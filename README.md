@@ -1,0 +1,1 @@
+# tinypng-plugin-webpack-full-featured
