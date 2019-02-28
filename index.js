@@ -9,6 +9,7 @@ class TinypngPlugin {
             extentions: ['png', 'jpg', 'jpeg'],
             silent: false,
             cache: true,
+            cacheLocation: path.resolve(__dirname, 'dict'),
             ...options,
         };
         this.log('options: ', options);
@@ -36,20 +37,21 @@ class TinypngPlugin {
     }
 
     getCache() {
-        const cachePath = path.resolve(__dirname, 'dict');
-        if (fs.statSync(cachePath).isFile() && this.options.cache) {
-            const cache = fs.readFileSync(cachePath);
-            this.dict = JSON.parse(cache);
-        } else {
+        try {
+            if (fs.statSync(this.options.cacheLocation).isFile() && this.options.cache) {
+                const cache = fs.readFileSync(this.options.cacheLocation);
+                this.dict = JSON.parse(cache);
+            } else {
+                this.dict = [];
+            }
+        } catch (e) {
             this.dict = [];
         }
     }
 
     setCache() {
-        if (this.options.cache) {
-            fs.writeFileSync(path.resolve(__dirname, 'dict'), JSON.stringify(this.dict));
-        } else {
-            fs.writeFileSync(path.resolve(__dirname, 'dict'), '[]');
+        if (this.options.cache && this.dict.length > 0) {
+            fs.writeFileSync(this.options.cacheLocation, JSON.stringify(this.dict));
         }
     }
 

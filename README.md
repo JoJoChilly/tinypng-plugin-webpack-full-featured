@@ -12,11 +12,11 @@ This is a simple plugin that uses [Tinypng](https://tinypng.com/) to compress im
 ## Example Usage
 
 ```js
-const TinypngPluginWebpack = require('./tinypng-plugin-webpack/index');
+const TinypngPlugin = require('tinypng-plugin-webpack-full-featured');
 
 module.exports = {
     plugins: [
-        new TinypngPluginWebpack({
+        new TinypngPlugin({
             from: path.resolve(__dirname, '../static/images'),
             extentions: ['png', 'jpeg', 'jpg'],
             silent: false,
@@ -80,6 +80,13 @@ Whether we show compressing result or not.
 **default**: `true`
 
 We use filepath and size to distinct images status. If we set it to false, images will always be compressed.
+
+#### options.cacheLocation
+
+**type**: `String`
+**default**: `{your project}/node_modules/tinypng-plugin-webpack-full-featured/dict`
+
+Location we save cache. If we set it to node_modules, team members would compress images again and again. So it is **recommended** that we set it to somewhere git included.
 
 ## FAQ
 
