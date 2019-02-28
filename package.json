@@ -1,0 +1,27 @@
+{
+    "name": "tinypng-plugin-webpack-full-featured",
+    "version": "1.0.0-alpha",
+    "description": "A full featured tinypng plugin used for compress images in webpack.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/JoJoChilly/tinypng-plugin-webpack-full-featured.git"
+    },
+    "keywords": [
+        "image",
+        "compress",
+        "tinypng"
+    ],
+    "author": "jojochilly (https://github.com/JoJoChilly)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/JoJoChilly/tinypng-plugin-webpack-full-featured/issues"
+    },
+    "homepage": "https://github.com/JoJoChilly/tinypng-plugin-webpack-full-featured#readme",
+    "dependencies": {
+        "axios": "^0.18.0"
+    }
+}
