@@ -57,8 +57,9 @@ _Note the order of the plugins matters. If you want to compress before, the `fro
 #### options.from (`required`)
 
 **type**: `String`
+**default**: `{your project}`
 
-The directory to compress images. Currently, we only dig 2 levels, which means `images/**.png` and `images/**/**.png`.
+The directory to compress images. Currently, we only dig 2 levels, which means `{your project}/**.png` and `{your project}/**/**.png`.
 
 #### options.extentions
 

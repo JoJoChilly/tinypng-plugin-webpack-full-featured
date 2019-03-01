@@ -10,6 +10,8 @@ class TinypngPlugin {
             silent: false,
             cache: true,
             cacheLocation: path.resolve(__dirname, 'dict'),
+            projectRoot: path.resolve(__dirname, '../../'),
+            from: path.resolve(__dirname, '../../'),
             ...options,
         };
         this.log('options: ', options);
@@ -19,6 +21,10 @@ class TinypngPlugin {
     }
     apply(compiler) {
         const onEmit = async (compilation, callback) => {
+            if (this.options.from.indexOf(this.options.projectRoot) < 0) {
+                throw new Error('From option should be in the project!!!');
+                return;
+            }
             const files = await this.getFilesFromDirectory();
             this.getCache();
             await Promise.all(files.map(file => this.compressSingleFile(file)));
@@ -31,8 +37,8 @@ class TinypngPlugin {
     }
 
     log(info) {
-        if (this.options.silent) {
-            console.log(info);
+        if (!this.options.silent) {
+            console.log(...arguments);
         }
     }
 
@@ -40,7 +46,10 @@ class TinypngPlugin {
         try {
             if (fs.statSync(this.options.cacheLocation).isFile() && this.options.cache) {
                 const cache = fs.readFileSync(this.options.cacheLocation);
-                this.dict = JSON.parse(cache);
+                this.dict = JSON.parse(cache).map(el => ({
+                    ...el,
+                    filePath: el.filePath,
+                }));
             } else {
                 this.dict = [];
             }
@@ -55,7 +64,7 @@ class TinypngPlugin {
         }
     }
 
-    async compressSingleFile(file) {
+    async compressSingleFile(filePath) {
         /* {
             input: { size: 1848, type: 'image/png' },
             output: {
@@ -68,20 +77,21 @@ class TinypngPlugin {
             },
         } */
         try {
-            if (this.tester.test(file)) {
-                const { size } = fs.statSync(file);
-                if (!this.dict.find(el => el.filePath === file && el.size === size)) {
-                    const { input, output } = await this.upload(file);
+            if (this.tester.test(filePath)) {
+                const { size } = fs.statSync(filePath);
+                const filePathRelative = filePath.split(this.options.projectRoot)[1];
+                if (!this.dict.find(el => el.filePath === filePathRelative && el.size === size)) {
+                    const { input, output } = await this.upload(filePath);
                     const compressedFile = await this.download(output.url);
                     this.log(
-                        `${file}: original size <${input.size}B>, compressed size <${
+                        `${filePathRelative}: original size <${input.size}B>, compressed size <${
                             output.size
                         }B>, compress ratio <${(output.ratio * 100).toFixed(2)}%>`,
                     );
-                    fs.writeFileSync(file, compressedFile);
+                    fs.writeFileSync(filePath, compressedFile);
                     // set cache
                     this.dict.push({
-                        filePath: file,
+                        filePath: filePathRelative,
                         size: output.size,
                     });
                 }
