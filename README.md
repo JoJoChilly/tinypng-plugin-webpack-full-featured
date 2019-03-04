@@ -54,6 +54,27 @@ _Note the order of the plugins matters. If you want to compress before, the `fro
 
 ### new TinypngPlugin(options)
 
+#### options.diabled
+
+**type**: `Boolean`
+**default**: `false`
+
+If we are not in production mode, we may not want to compress images.
+
+```js
+module.exports = {
+    plugins: [
+        new TinypngPlugin({
+            from: path.resolve(__dirname, '../static/images'),
+            extentions: ['png', 'jpeg', 'jpg'],
+            silent: false,
+            cache: true,
+            disabled: process.env.NODE_ENV !== 'production',
+        }),
+    ],
+};
+```
+
 #### options.from (`required`)
 
 **type**: `String`

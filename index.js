@@ -12,6 +12,7 @@ class TinypngPlugin {
             cacheLocation: path.resolve(__dirname, 'dict'),
             projectRoot: path.resolve(__dirname, '../../'),
             from: path.resolve(__dirname, '../../'),
+            disabled: false,
             ...options,
         };
         this.log('options: ', options);
@@ -25,12 +26,13 @@ class TinypngPlugin {
                 throw new Error('From option should be in the project!!!');
                 return;
             }
-            const files = await this.getFilesFromDirectory();
-            this.getCache();
-            await Promise.all(files.map(file => this.compressSingleFile(file)));
-            this.setCache();
-            this.log('finished!!');
-
+            if (!this.options.disabled) {
+                const files = await this.getFilesFromDirectory();
+                this.getCache();
+                await Promise.all(files.map(file => this.compressSingleFile(file)));
+                this.setCache();
+                this.log('finished!!');
+            }
             callback();
         };
         compiler.plugin('emit', onEmit);
