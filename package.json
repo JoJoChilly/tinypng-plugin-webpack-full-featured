@@ -1,6 +1,6 @@
 {
     "name": "tinypng-plugin-webpack-full-featured",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "A full featured tinypng plugin used for compress images in webpack.",
     "main": "index.js",
     "scripts": {

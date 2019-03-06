@@ -54,7 +54,7 @@ _Note the order of the plugins matters. If you want to compress before, the `fro
 
 ### new TinypngPlugin(options)
 
-#### options.diabled
+#### options.disable
 
 **type**: `Boolean`
 **default**: `false`
@@ -69,7 +69,7 @@ module.exports = {
             extentions: ['png', 'jpeg', 'jpg'],
             silent: false,
             cache: true,
-            disabled: process.env.NODE_ENV !== 'production',
+            disable: process.env.NODE_ENV !== 'production',
         }),
     ],
 };
