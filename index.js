@@ -19,6 +19,7 @@ class TinypngPlugin {
         const extentions = this.options.extentions.join('|');
         this.tester = new RegExp(`\\.(${extentions})(\\?.*)?$`);
         this.dict = [];
+        this.shouldRewriteDict = false;
     }
     apply(compiler) {
         const onEmit = async (compilation, callback) => {
@@ -35,7 +36,12 @@ class TinypngPlugin {
             }
             callback();
         };
-        compiler.plugin('emit', onEmit);
+
+        if (compiler.hooks) {
+            compiler.hooks.emit.tapAsync('onEmit', onEmit);
+        } else {
+            compiler.plugin('emit', onEmit);
+        }
     }
 
     log(info) {
@@ -61,7 +67,7 @@ class TinypngPlugin {
     }
 
     setCache() {
-        if (this.options.cache && this.dict.length > 0) {
+        if (this.options.cache && this.dict.length > 0 && this.shouldRewriteDict) {
             fs.writeFileSync(this.options.cacheLocation, JSON.stringify(this.dict));
         }
     }
@@ -83,6 +89,7 @@ class TinypngPlugin {
                 const { size } = fs.statSync(filePath);
                 const filePathRelative = filePath.split(this.options.projectRoot)[1];
                 if (!this.dict.find(el => el.filePath === filePathRelative && el.size === size)) {
+                    this.shouldRewriteDict = true;
                     const { input, output } = await this.upload(filePath);
                     const compressedFile = await this.download(output.url);
                     this.log(

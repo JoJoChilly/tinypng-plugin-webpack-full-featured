@@ -126,7 +126,7 @@ Sure. If the feature make sense, I would add it. And please understand that I ne
 
 ## Inspiration
 
--   Big thanks to [tinypng-webpack-plugin](https://www.npmjs.com/package/tinypng-webpack-plugin), [tinypng-loader](https://www.npmjs.com/package/tinypng-loader) and [imagemin-webpack-plugin](https://github.com/Klathmon/imagemin-webpack-plugin).
+-   Many thanks to [tinypng-webpack-plugin](https://www.npmjs.com/package/tinypng-webpack-plugin), [tinypng-loader](https://www.npmjs.com/package/tinypng-loader) and [imagemin-webpack-plugin](https://github.com/Klathmon/imagemin-webpack-plugin).
 
 ## Contributing
 
