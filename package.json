@@ -4,7 +4,10 @@
     "description": "A full featured tinypng plugin used for compress images in webpack.",
     "main": "index.js",
     "scripts": {
-        "test": "jest"
+        "test": "npm run install-webpack && jest",
+        "install-webpack": "npm run install-webpack3 && npm run install-webpack4",
+        "install-webpack3": "cd tests/webpack3 && yarn",
+        "install-webpack4": "cd tests/webpack4 && yarn"
     },
     "repository": {
         "type": "git",
