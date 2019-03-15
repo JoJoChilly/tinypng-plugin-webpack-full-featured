@@ -2,6 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/tinypng-plugin-webpack-full-featured.svg)](https://www.npmjs.com/package/tinypng-plugin-webpack-full-featured)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![build status](https://travis-ci.org/JoJoChilly/tinypng-plugin-webpack-full-featured.svg?branch=master)](https://travis-ci.org/JoJoChilly/tinypng-plugin-webpack-full-featured.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/JoJoChilly/tinypng-plugin-webpack-full-featured/badge.svg?branch=master)](https://coveralls.io/github/JoJoChilly/tinypng-plugin-webpack-full-featured?branch=master)
 
 This is a simple plugin that uses [Tinypng](https://tinypng.com/) to compress images in your project.

@@ -4,7 +4,7 @@
     "description": "A full featured tinypng plugin used for compress images in webpack.",
     "main": "index.js",
     "scripts": {
-        "test": "npm run install-webpack && jest",
+        "test": "npm run install-webpack && jest --coverage --coverageReporters=text-lcov | coveralls",
         "install-webpack": "npm run install-webpack3 && npm run install-webpack4",
         "install-webpack3": "cd tests/webpack3 && yarn",
         "install-webpack4": "cd tests/webpack4 && yarn"
@@ -31,6 +31,7 @@
         "@babel/core": "^7.3.4",
         "@babel/preset-env": "^7.3.4",
         "babel-jest": "^24.5.0",
+        "coveralls": "^3.0.3",
         "fs-extra": "^7.0.1",
         "jest": "^24.3.1"
     }
