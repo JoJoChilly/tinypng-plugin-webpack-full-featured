@@ -1,0 +1,12 @@
+{
+    "name": "test-webpack-3",
+    "version": "1.0.0",
+    "description": "Test webpack v3",
+    "main": "index.js",
+    "scripts": {},
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "webpack": "^3.10.0"
+    }
+}

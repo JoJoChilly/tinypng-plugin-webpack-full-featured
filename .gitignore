@@ -1,3 +1,7 @@
 node_modules
 dist
 .idea
+.DS_Store
+coverage/
+tests/webpack3/assets/
+tests/webpack4/assets/

@@ -4,7 +4,7 @@
     "description": "A full featured tinypng plugin used for compress images in webpack.",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "jest"
     },
     "repository": {
         "type": "git",
@@ -23,5 +23,12 @@
     "homepage": "https://github.com/JoJoChilly/tinypng-plugin-webpack-full-featured#readme",
     "dependencies": {
         "axios": "^0.18.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.3.4",
+        "@babel/preset-env": "^7.3.4",
+        "babel-jest": "^24.5.0",
+        "fs-extra": "^7.0.1",
+        "jest": "^24.3.1"
     }
 }

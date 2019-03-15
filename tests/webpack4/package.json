@@ -1,0 +1,12 @@
+{
+    "name": "test-webpack-4",
+    "version": "1.0.0",
+    "description": "Test webpack v4",
+    "main": "index.js",
+    "scripts": {},
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "webpack": "^4.29.6"
+    }
+}
